@@ -16,5 +16,7 @@ public record DatosRegistroTopico(
 
         @NotNull
         @Positive
-        Long idUsuario) {
+        Long idUsuario,
+
+        Boolean estado) {
 }

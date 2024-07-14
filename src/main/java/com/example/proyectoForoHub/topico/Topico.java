@@ -22,12 +22,14 @@ public class Topico {
     private String mensaje;
     private LocalDate fechaCreacion;
     private Long idUsuario;
+    private Boolean estado;
 
     public Topico(DatosRegistroTopico datosRegistroTopico) {
         this.mensaje = datosRegistroTopico.mensaje();
         this.titulo = datosRegistroTopico.titulo();
         this.fechaCreacion = LocalDate.now();
         this.idUsuario = datosRegistroTopico.idUsuario();
+        this.estado = true;
     }
 
     public Long getId() {
@@ -46,6 +48,10 @@ public class Topico {
         return fechaCreacion;
     }
 
+    public Boolean getEstado() {
+        return estado;
+    }
+
     public void actualizarDatos(DatosActualizrTopico datosActualizrTopico) {
         if (datosActualizrTopico.titulo() != null){
             this.titulo = datosActualizrTopico.titulo();
@@ -53,5 +59,9 @@ public class Topico {
         if (datosActualizrTopico.mensaje() != null){
             this.mensaje = datosActualizrTopico.mensaje();
         }
+    }
+
+    public void desactivarTopico() {
+        this.estado = false;
     }
 }

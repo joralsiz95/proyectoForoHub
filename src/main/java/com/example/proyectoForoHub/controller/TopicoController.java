@@ -26,7 +26,8 @@ public class TopicoController {
 
     @GetMapping
     public Page<DatosListadoTopico> listadoTopicos(Pageable paginacion){
-        return topicoRepository.findAll(paginacion).map(DatosListadoTopico::new);
+//        return topicoRepository.findAll(paginacion).map(DatosListadoTopico::new); Muestra los topicos activos y no activos
+        return topicoRepository.findByEstadoTrue(paginacion).map(DatosListadoTopico::new);
     }
 
     @PutMapping
@@ -34,5 +35,18 @@ public class TopicoController {
     public void actualizarTopico(@RequestBody @Valid DatosActualizrTopico datosActualizrTopico){
         Topico topico = topicoRepository.getReferenceById(datosActualizrTopico.id());
         topico.actualizarDatos(datosActualizrTopico);
+    }
+
+    @DeleteMapping("/{id}")
+    @Transactional
+//    Eliminar por completo un topico de la base de datos
+//    public void eliminarTopico(@PathVariable Long id){
+//        Topico topico = topicoRepository.getReferenceById(id);
+//        topicoRepository.delete(topico);
+//    }
+
+    public void eliminarTopico(@PathVariable Long id){
+        Topico topico = topicoRepository.getReferenceById(id);
+        topico.desactivarTopico();
     }
 }
