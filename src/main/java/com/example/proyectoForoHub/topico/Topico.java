@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Table(name = "topico")
 @Entity(name = "Topico")
@@ -20,14 +21,14 @@ public class Topico {
     private Long id;
     private String titulo;
     private String mensaje;
-    private LocalDate fechaCreacion;
+    private LocalDateTime fechaCreacion;
     private Long idUsuario;
     private Boolean estado;
 
     public Topico(DatosRegistroTopico datosRegistroTopico) {
         this.mensaje = datosRegistroTopico.mensaje();
         this.titulo = datosRegistroTopico.titulo();
-        this.fechaCreacion = LocalDate.now();
+        this.fechaCreacion = LocalDateTime.now();
         this.idUsuario = datosRegistroTopico.idUsuario();
         this.estado = true;
     }
@@ -44,7 +45,7 @@ public class Topico {
         return mensaje;
     }
 
-    public LocalDate getFechaCreacion() {
+    public LocalDateTime getFechaCreacion() {
         return fechaCreacion;
     }
 
