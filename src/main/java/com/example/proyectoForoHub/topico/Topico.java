@@ -45,4 +45,13 @@ public class Topico {
     public LocalDate getFechaCreacion() {
         return fechaCreacion;
     }
+
+    public void actualizarDatos(DatosActualizrTopico datosActualizrTopico) {
+        if (datosActualizrTopico.titulo() != null){
+            this.titulo = datosActualizrTopico.titulo();
+        }
+        if (datosActualizrTopico.mensaje() != null){
+            this.mensaje = datosActualizrTopico.mensaje();
+        }
+    }
 }
